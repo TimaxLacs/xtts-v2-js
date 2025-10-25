@@ -1,6 +1,6 @@
 {
   "name": "xtts-v2-js",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "NPM-пакет для запуска и взаимодействия с локальным сервером XTTS-v2 для синтеза речи с клонированием голоса (Coqui TTS)",
   "main": "index.js",
   "type": "module",
