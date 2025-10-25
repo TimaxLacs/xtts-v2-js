@@ -318,13 +318,13 @@ MIT License - see [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 🐛 Report a bug: [GitHub Issues](https://github.com/timax-a/xtts-v2-js/issues)
-- 💡 Suggest improvement: [GitHub Discussions](https://github.com/timax-a/xtts-v2-js/discussions)
+- 🐛 Report a bug: [GitHub Issues](https://github.com/TimaxLacs/xtts-v2-js/issues)
+- 💡 Suggest improvement: [GitHub Discussions](https://github.com/TimaxLacs/xtts-v2-js/discussions)
 
 ## 🔗 Links
 
 - [NPM Package](https://www.npmjs.com/package/xtts-v2-js)
-- [GitHub Repository](https://github.com/timax-a/xtts-v2-js)
+- [GitHub Repository](https://github.com/TimaxLacs/xtts-v2-js)
 - [Coqui TTS Documentation](https://tts.readthedocs.io/)
 - [XTTS-v2 on Hugging Face](https://huggingface.co/coqui/XTTS-v2)
 
