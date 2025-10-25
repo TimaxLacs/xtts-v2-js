@@ -1,0 +1,49 @@
+{
+  "name": "xtts-v2-js",
+  "version": "1.0.2",
+  "description": "NPM-пакет для запуска и взаимодействия с локальным сервером XTTS-v2 для синтеза речи с клонированием голоса (Coqui TTS)",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "xtts-v2-js": "./server.js"
+  },
+  "files": [
+    "index.js",
+    "server.js",
+    "server.py",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "serve": "node server.js serve"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "form-data": "^4.0.0",
+    "minimist": "^1.2.8"
+  },
+  "keywords": [
+    "tts",
+    "text-to-speech",
+    "voice-cloning",
+    "xtts",
+    "xtts-v2",
+    "coqui",
+    "speech-synthesis",
+    "ai",
+    "voice"
+  ],
+  "author": "timax",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timax-a/xtts-v2-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timax-a/xtts-v2-js/issues"
+  },
+  "homepage": "https://github.com/timax-a/xtts-v2-js#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

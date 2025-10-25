@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+*.log
+server.log
+npm-debug.log*
+
+# Output files
+*.wav
+output/
+example_output*.wav
+
+# Development
+example.js
+PACKAGE_INFO.md
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
