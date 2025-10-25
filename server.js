@@ -20,11 +20,33 @@ async function installPythonDependencies() {
 
         console.log('🚀 Начинаем установку зависимостей для XTTS-v2-JS...\n');
 
-        // Проверяем наличие Python
+        // Выбираем подходящую версию Python (3.9-3.12 для CPU PyTorch)
+        let pythonCommand = 'python3';
         try {
-            execSync('python3 --version', { stdio: 'pipe' });
+            const versionOutput = execSync('python3 --version', { encoding: 'utf-8' });
+            const version = versionOutput.match(/Python (\d+)\.(\d+)/);
+            if (version) {
+                const major = parseInt(version[1]);
+                const minor = parseInt(version[2]);
+                
+                // Python 3.13+ не поддерживает CPU PyTorch, пробуем найти 3.10
+                if (major === 3 && minor >= 13) {
+                    try {
+                        execSync('pyenv versions', { stdio: 'pipe' });
+                        // Пробуем использовать Python 3.10 через pyenv
+                        try {
+                            execSync('pyenv shell 3.10.13', { cwd: projectRoot });
+                            console.log('ℹ️  Используем Python 3.10.13 через pyenv (совместим с CPU PyTorch)\n');
+                        } catch (e) {
+                            console.log('⚠️  Python 3.13 может иметь проблемы с CPU PyTorch, но попробуем...\n');
+                        }
+                    } catch (e) {
+                        console.log('⚠️  Python 3.13 может иметь проблемы с CPU PyTorch, но попробуем...\n');
+                    }
+                }
+            }
         } catch (error) {
-            throw new Error('Python 3 не найден. Установите Python 3.9-3.11');
+            throw new Error('Python 3 не найден. Установите Python 3.9-3.12');
         }
 
         // Создаём виртуальное окружение, если его нет
@@ -44,13 +66,21 @@ async function installPythonDependencies() {
         });
         console.log('✅ pip обновлен\n');
 
-        // Устанавливаем PyTorch (автоматически выберет CPU или CUDA версию)
-        console.log('🔥 Устанавливаем PyTorch...');
+        // Устанавливаем PyTorch CPU версию (легче и быстрее для установки)
+        console.log('🔥 Устанавливаем PyTorch (CPU версия)...');
         console.log('   Это может занять несколько минут...');
-        execSync(
-            `${venvPython} -m pip install --no-cache-dir "torch>=2.1" "torchaudio>=2.1"`,
-            { stdio: 'inherit', env: pipEnv }
-        );
+        try {
+            execSync(
+                `${venvPython} -m pip install --no-cache-dir torch torchaudio --index-url https://download.pytorch.org/whl/cpu`,
+                { stdio: 'inherit', env: pipEnv }
+            );
+        } catch (err) {
+            console.log('⚠️  CPU версия недоступна, пробуем стандартную...');
+            execSync(
+                `${venvPython} -m pip install --no-cache-dir torch torchaudio`,
+                { stdio: 'inherit', env: pipEnv }
+            );
+        }
         console.log('✅ PyTorch установлен\n');
 
         // Устанавливаем TTS (Coqui TTS)
