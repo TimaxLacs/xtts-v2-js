@@ -48,7 +48,7 @@ async function installPythonDependencies() {
         console.log('🔥 Устанавливаем PyTorch (CPU версия)...');
         console.log('   Это может занять несколько минут...');
         execSync(
-            `${venvPython} -m pip install --no-cache-dir torch==2.1.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cpu`,
+            `${venvPython} -m pip install --no-cache-dir "torch>=2.1,<3.0" "torchaudio>=2.1,<3.0" --index-url https://download.pytorch.org/whl/cpu`,
             { stdio: 'inherit', env: pipEnv }
         );
         console.log('✅ PyTorch установлен\n');
@@ -62,9 +62,9 @@ async function installPythonDependencies() {
         });
         console.log('✅ Coqui TTS установлен\n');
 
-        // Понижаем версию transformers для совместимости
+        // Устанавливаем совместимую версию transformers
         console.log('🔧 Настраиваем совместимость библиотек...');
-        execSync(`${venvPython} -m pip install --no-cache-dir transformers==4.44.0`, { 
+        execSync(`${venvPython} -m pip install --no-cache-dir "transformers>=4.30,<5.0"`, { 
             stdio: 'inherit', 
             env: pipEnv 
         });
