@@ -44,11 +44,11 @@ async function installPythonDependencies() {
         });
         console.log('✅ pip обновлен\n');
 
-        // Устанавливаем PyTorch CPU версию (легче и быстрее для установки)
-        console.log('🔥 Устанавливаем PyTorch (CPU версия)...');
+        // Устанавливаем PyTorch (автоматически выберет CPU или CUDA версию)
+        console.log('🔥 Устанавливаем PyTorch...');
         console.log('   Это может занять несколько минут...');
         execSync(
-            `${venvPython} -m pip install --no-cache-dir "torch>=2.1,<3.0" "torchaudio>=2.1,<3.0" --index-url https://download.pytorch.org/whl/cpu`,
+            `${venvPython} -m pip install --no-cache-dir "torch>=2.1" "torchaudio>=2.1"`,
             { stdio: 'inherit', env: pipEnv }
         );
         console.log('✅ PyTorch установлен\n');
